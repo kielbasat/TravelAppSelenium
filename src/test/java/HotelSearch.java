@@ -1,6 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +12,7 @@ import java.time.Duration;
 public class HotelSearch {
 
     @Test
-    public void searchHotel(){
+    public void searchHotel() {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -24,5 +25,10 @@ public class HotelSearch {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.select2-match")));
         driver.findElement(By.cssSelector("span.select2-match")).click();
+
+        driver.findElement(By.cssSelector("input.dpd1")).sendKeys("17/04/2022");
+        driver.findElement(By.cssSelector("input.dpd2")).sendKeys("17/05/2022");
+
+
     }
 }
