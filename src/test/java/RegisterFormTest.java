@@ -11,14 +11,11 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class RegisterFormTest {
+public class RegisterFormTest extends BaseTest {
 
     @Test
-    public void searchHotel() {
+    public void searchHotelTest() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/register");
 
         String lastname = "Kabanos";
@@ -26,11 +23,10 @@ public class RegisterFormTest {
         driver.findElement(By.cssSelector("input[name=firstname]")).sendKeys("Tomek");
         driver.findElement(By.cssSelector("input[name=lastname]")).sendKeys(lastname);
         driver.findElement(By.cssSelector("input[name=phone]")).sendKeys("888761637");
-        driver.findElement(By.cssSelector("input[name=email]")).sendKeys( Math.random() + "@test.test");
+        driver.findElement(By.cssSelector("input[name=email]")).sendKeys(Math.random() + "@test.test");
         driver.findElement(By.cssSelector("input[name=password]")).sendKeys("#DupaCycki");
         driver.findElement(By.cssSelector("input[name=confirmpassword]")).sendKeys("#DupaCycki");
         driver.findElement(By.cssSelector(".signupbtn")).click();
-
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3.RTL")));
@@ -38,8 +34,6 @@ public class RegisterFormTest {
 
         Assert.assertEquals(registrationText, "Hi, Tomek Kabanos");
         Assert.assertTrue(registrationText.contains(lastname));
-
-
 
     }
 

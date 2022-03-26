@@ -12,27 +12,25 @@ import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SignUpTest {
+public class SignUpTest extends BaseTest {
 
     @Test
-    public void searchHotel() {
+    public void searchHotelTest() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+
         driver.get("http://www.kurs-selenium.pl/demo/");
 
-    driver.findElements(By.cssSelector("#li_myaccount"))
+        driver.findElements(By.cssSelector("#li_myaccount"))
                 .stream()
                 .filter(WebElement::isDisplayed)
                 .findFirst()
                 .ifPresent(WebElement::click);
 
-    driver.findElements(By.xpath("//a[text()='  Sign Up']"))
-            .stream()
-            .filter(WebElement::isDisplayed)
-            .findFirst()
-            .ifPresent(WebElement::click);
+        driver.findElements(By.xpath("//a[text()='  Sign Up']"))
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .findFirst()
+                .ifPresent(WebElement::click);
 
     }
 

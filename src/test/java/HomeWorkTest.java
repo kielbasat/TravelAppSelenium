@@ -11,14 +11,11 @@ import org.testng.annotations.Test;
 import java.sql.Driver;
 import java.time.Duration;
 
-public class HomeWorkTest {
+public class HomeWorkTest extends BaseTest {
 
     @Test
-    public void searchHotel() {
+    public void searchHotelTest() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/");
 
         WebElement checkInInput = driver.findElement(By.cssSelector("input.dpd1"));
@@ -46,7 +43,6 @@ public class HomeWorkTest {
         String searchResult = driver.findElement(By.xpath("//h2[text()='No Results Found']")).getText();
 
         Assert.assertEquals(searchResult, "No Results Found");
-
 
 
     }

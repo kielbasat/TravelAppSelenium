@@ -15,14 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class HomeWork2Test {
+public class HomeWork2Test extends BaseTest {
 
     @Test
-    public void searchHotelNoData() {
+    public void searchHotelNoDataTest() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/register");
 
         String lastname = "Kabanos";
@@ -37,7 +34,7 @@ public class HomeWork2Test {
         driver.findElement(By.cssSelector(".signupbtn")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert-danger p")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.alert-danger p")));
 
         List<String> alertTextList = driver.findElements(By.cssSelector("div.alert-danger p"))
                 .stream()
@@ -45,24 +42,22 @@ public class HomeWork2Test {
                 .toList();
 
         SoftAssert softAssert = new SoftAssert();
-                softAssert.assertTrue(alertTextList.contains("The Email field is required."));
-                softAssert.assertTrue(alertTextList.contains("The Password field is required."));
-                softAssert.assertTrue(alertTextList.contains("The Password field is required."));
-                softAssert.assertTrue(alertTextList.contains("The First name field is required."));
-                softAssert.assertTrue(alertTextList.contains("The Last Name field is required."));
-                softAssert.assertAll();
+        softAssert.assertTrue(alertTextList.contains("The Email field is required."));
+        softAssert.assertTrue(alertTextList.contains("The Password field is required."));
+        softAssert.assertTrue(alertTextList.contains("The Password field is required."));
+        softAssert.assertTrue(alertTextList.contains("The First name field is required."));
+        softAssert.assertTrue(alertTextList.contains("The Last Name field is required."));
+        softAssert.assertAll();
 
 //        Assert.assertEquals(alertTextList.get(0), "The Email field is required.");
 //        Assert.assertEquals(alertTextList.get(1), "The Password field is required.");
 //        Assert.assertEquals(alertTextList.get(2), "The Password field is required.");
 //        Assert.assertEquals(alertTextList.get(3), "The First name field is required.");
 //        Assert.assertEquals(alertTextList.get(4), "The Last Name field is required.");
-
-
     }
 
     @Test
-    public void searchHotelInvalidEmail() {
+    public void searchHotelInvalidEmailTest() {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -75,7 +70,7 @@ public class HomeWork2Test {
         driver.findElement(By.cssSelector("input[name=firstname]")).sendKeys("Tomek");
         driver.findElement(By.cssSelector("input[name=lastname]")).sendKeys(lastname);
         driver.findElement(By.cssSelector("input[name=phone]")).sendKeys("888761637");
-        driver.findElement(By.cssSelector("input[name=email]")).sendKeys( invalidEmail);
+        driver.findElement(By.cssSelector("input[name=email]")).sendKeys(invalidEmail);
         driver.findElement(By.cssSelector("input[name=password]")).sendKeys("#DupaCycki");
         driver.findElement(By.cssSelector("input[name=confirmpassword]")).sendKeys("#DupaCycki");
         driver.findElement(By.cssSelector(".signupbtn")).click();
@@ -91,5 +86,4 @@ public class HomeWork2Test {
         Assert.assertEquals(alertTextList.get(0), "The Email field must contain a valid email address.");
 
     }
-
 }
