@@ -1,22 +1,15 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class HotelSearch {
+public class CityHotelSearchTest extends BaseTest {
 
     @Test
-    public void searchHotel() {
+    public void searchHotelTest() {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/");
 
         driver.findElement(By.xpath("//span[text()='Search by Hotel or City Name']")).click();
@@ -28,7 +21,5 @@ public class HotelSearch {
 
         driver.findElement(By.cssSelector("input.dpd1")).sendKeys("17/04/2022");
         driver.findElement(By.cssSelector("input.dpd2")).sendKeys("17/05/2022");
-
-
     }
 }
