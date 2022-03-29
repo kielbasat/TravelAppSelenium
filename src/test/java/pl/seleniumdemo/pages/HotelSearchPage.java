@@ -49,10 +49,12 @@ public class HotelSearchPage {
         checkOutDateInput.sendKeys(outDate);
     }
 
-    public void setTravellers() {
+    public void setTravellers(int adultsToSubtract, int childToAdd) {
         travellersInput.click();
-        adultMinusBtn.click();
-        childPlusBtn.click();
+        for(int i=0; i<adultsToSubtract; i++)
+            adultMinusBtn.click();
+        for(int i = 0; i<childToAdd; i++)
+            childPlusBtn.click();
     }
 
     public void performSearch() {
