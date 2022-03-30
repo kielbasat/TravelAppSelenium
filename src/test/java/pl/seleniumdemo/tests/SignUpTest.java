@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pl.seleniumdemo.model.User;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
@@ -18,7 +19,6 @@ public class SignUpTest extends BaseTest {
     @Test
     public void signUpTest() {
 
-        driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
@@ -43,17 +43,25 @@ public class SignUpTest extends BaseTest {
     @Test
     public void signUpTestWithOneMethod() {
 
-        driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
+        User user = new User();
+        user.setFirstName("Tomek");
+        user.setLastName("Kabanos");
+        user.setPhone("888761637");
+        user.setEmail("aaba@" + (Math.random()*1000) + "aaba.pl");
+        user.setPassword("#Password1");
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
 
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.fillSignUpForm("Tomek", "Kabanos", "888761637", "aaba@aaba.pl",
-                "#Password1");
+        //signUpPage.fillSignUpForm("Tomek", "Kabanos", "888761637", "aaba@aaba.pl",
+        //        "#Password1");
+        signUpPage.fillSignUpForm(user);
 
         LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+
         String headingText = loggedUserPage.getHeadingText();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://www.kurs-selenium.pl/demo/account/");

@@ -13,7 +13,6 @@ public class HotelSearchTest extends BaseTest {
     @Test
     public void searchHotelTest() {
 
-        driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
@@ -34,7 +33,6 @@ public class HotelSearchTest extends BaseTest {
     @Test
     public void searchHotelWithoutNameTest() {
 
-        driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);

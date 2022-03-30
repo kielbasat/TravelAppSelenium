@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pl.seleniumdemo.model.User;
 
 import java.time.Duration;
 import java.util.List;
@@ -88,6 +89,16 @@ public class SignUpPage {
         setInputEmail(emailAddress);
         setInputPassword(password);
         setInputConfirmPassword(password);
+        signUpPerform();
+    }
+
+    public void fillSignUpForm(User user){
+        setInputFirstName(user.getFirstName());
+        setInputLastName(user.getLastName());
+        setInputPhone(user.getPhone());
+        setInputEmail(user.getEmail());
+        setInputPassword(user.getPassword());
+        setInputConfirmPassword(user.getPassword());
         signUpPerform();
     }
 }
