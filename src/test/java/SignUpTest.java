@@ -1,6 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.tests.BaseTest;
 
 public class SignUpTest extends BaseTest {
@@ -11,18 +13,10 @@ public class SignUpTest extends BaseTest {
 
         driver.get("http://www.kurs-selenium.pl/demo/");
 
-        driver.findElements(By.cssSelector("#li_myaccount"))
-                .stream()
-                .filter(WebElement::isDisplayed)
-                .findFirst()
-                .ifPresent(WebElement::click);
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
 
-        driver.findElements(By.xpath("//a[text()='  Sign Up']"))
-                .stream()
-                .filter(WebElement::isDisplayed)
-                .findFirst()
-                .ifPresent(WebElement::click);
-
+        Assert.assertEquals(driver.getCurrentUrl(), "http://www.kurs-selenium.pl/demo/register");
     }
 
 }
