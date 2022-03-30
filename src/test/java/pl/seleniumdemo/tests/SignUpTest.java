@@ -4,12 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
 import pl.seleniumdemo.tests.BaseTest;
 
 import java.time.Duration;
+import java.util.List;
 
 public class SignUpTest extends BaseTest {
 
@@ -38,4 +40,24 @@ public class SignUpTest extends BaseTest {
         Assert.assertEquals(headingText, "Hi, Tomek Kabanos");
     }
 
+    @Test
+    public void signUpEmptyTest() {
+        driver.get("http://www.kurs-selenium.pl/demo/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.signUpPerform();
+
+        List<String> paragraphs = signUpPage.getAlertParagraphsText();
+
+        SoftAssert softAssert = new SoftAssert();
+                softAssert.assertTrue(paragraphs.contains("The Email field is required."));
+                softAssert.assertTrue(paragraphs.contains("The Password field is required."));
+                softAssert.assertTrue(paragraphs.contains("The Password field is required."));
+                softAssert.assertTrue(paragraphs.contains("The First name field is required."));
+                softAssert.assertTrue(paragraphs.contains("The Last Name field is required"));
+    }
 }
