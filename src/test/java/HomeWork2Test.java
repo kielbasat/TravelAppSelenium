@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -84,5 +85,12 @@ public class HomeWork2Test extends BaseTest {
 
         Assert.assertEquals(alertTextList.get(0), "The Email field must contain a valid email address.");
 
+    }
+
+    public static class LoggedUserPage {
+
+        public LoggedUserPage(WebDriver driver) {
+            PageFactory.initElements(driver, this);
+        }
     }
 }

@@ -65,8 +65,8 @@ public class HotelSearchPage {
         addTraveler(childPlusBtn, childToAdd);
     }
 
-    public void addTraveler (WebElement travelerBtn, int numberOfTravelers){
-        for(int i=0; i<numberOfTravelers; i++)
+    public void addTraveler(WebElement travelerBtn, int numberOfTravelers) {
+        for (int i = 0; i < numberOfTravelers; i++)
             travelerBtn.click();
     }
 
@@ -74,7 +74,7 @@ public class HotelSearchPage {
         searchBtn.click();
     }
 
-    public void openSignUpForm(){
+    public void openSignUpForm() {
         myAccountLink
                 .stream()
                 .filter(WebElement::isDisplayed)

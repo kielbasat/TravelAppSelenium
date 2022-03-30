@@ -36,26 +36,34 @@ public class SignUpPage {
     @FindBy(css = "h3.RTL")
     private WebElement headingRegistrationText;
 
-    public SignUpPage(WebDriver driver) {PageFactory.initElements(driver, this);}
+    public SignUpPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     public void setInputFirstName(String firstName) {
         inputFirstName.sendKeys(firstName);
     }
+
     public void setInputLastName(String lastName) {
         inputLastName.sendKeys(lastName);
     }
+
     public void setInputPhone(String phoneNumber) {
         inputPhone.sendKeys(phoneNumber);
     }
+
     public void setInputEmail(String emailAddress) {
         inputEmail.sendKeys(emailAddress);
     }
+
     public void setInputPassword(String password) {
         inputPassword.sendKeys(password);
     }
+
     public void setInputConfirmPassword(String confirmPassword) {
         inputConfirmPassword.sendKeys(confirmPassword);
     }
+
     public void signUpPerform() {
         signUpBtn.click();
     }

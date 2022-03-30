@@ -9,13 +9,13 @@ import java.util.List;
 
 public class ResultsPage {
 
-    @FindBy (css = "h4.list_title")
+    @FindBy(css = "h4.list_title")
     private List<WebElement> hotelList;
 
-    @FindBy (xpath = "//h2[text()='No Results Found']")
+    @FindBy(xpath = "//h2[text()='No Results Found']")
     private WebElement HotelSearchResults;
 
-    public ResultsPage(WebDriver driver){
+    public ResultsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -25,7 +25,7 @@ public class ResultsPage {
                 .toList();
     }
 
-    public String hotelSearchResults(){
+    public String hotelSearchResults() {
         return HotelSearchResults.getText();
     }
 }
