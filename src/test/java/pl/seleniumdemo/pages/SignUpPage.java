@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class SignUpPage {
 
@@ -35,6 +36,10 @@ public class SignUpPage {
 
     @FindBy(css = "h3.RTL")
     private WebElement headingRegistrationText;
+
+    @FindBy(css = ".alert-danger p")
+    private List<WebElement> paragraphs;
+
 
     public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -68,7 +73,11 @@ public class SignUpPage {
         signUpBtn.click();
     }
 
-//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3.RTL")));
-//    String registrationText = driver.findElement(By.cssSelector("h3.RTL")).getText();
+    public List<String> getAlertParagraphsText() {
+        return paragraphs
+                .stream()
+                .map(WebElement::getText)
+                .toList();
+    }
 }
+
