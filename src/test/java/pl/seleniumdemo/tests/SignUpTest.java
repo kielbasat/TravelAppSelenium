@@ -41,6 +41,26 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
+    public void signUpTestWithOneMethod() {
+
+        driver.get("http://www.kurs-selenium.pl/demo/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.fillSignUpForm("Tomek", "Kabanos", "888761637", "aaba@aaba.pl",
+                "#Password1");
+
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        String headingText = loggedUserPage.getHeadingText();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "http://www.kurs-selenium.pl/demo/account/");
+        Assert.assertEquals(headingText, "Hi, Tomek Kabanos");
+    }
+
+    @Test
     public void signUpEmptyTest() {
         driver.get("http://www.kurs-selenium.pl/demo/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));

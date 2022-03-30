@@ -79,5 +79,16 @@ public class SignUpPage {
                 .map(WebElement::getText)
                 .toList();
     }
+
+    public void fillSignUpForm(String firstName, String lastName, String phoneNumber, String emailAddress,
+                               String password){
+        setInputFirstName(firstName);
+        setInputLastName(lastName);
+        setInputPhone(phoneNumber);
+        setInputEmail(emailAddress);
+        setInputPassword(password);
+        setInputConfirmPassword(password);
+        signUpPerform();
+    }
 }
 
