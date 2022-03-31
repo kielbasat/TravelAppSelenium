@@ -1,15 +1,10 @@
 package pl.seleniumdemo.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pl.seleniumdemo.model.User;
 
-import java.time.Duration;
 import java.util.List;
 
 public class SignUpPage {
@@ -41,37 +36,46 @@ public class SignUpPage {
     @FindBy(css = ".alert-danger p")
     private List<WebElement> paragraphs;
 
+    private WebDriver driver;
 
     public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-    public void setInputFirstName(String firstName) {
+    public SignUpPage setInputFirstName(String firstName) {
         inputFirstName.sendKeys(firstName);
+        return this;
     }
 
-    public void setInputLastName(String lastName) {
+    public SignUpPage setInputLastName(String lastName) {
         inputLastName.sendKeys(lastName);
+        return this;
     }
 
-    public void setInputPhone(String phoneNumber) {
+    public SignUpPage setInputPhone(String phoneNumber) {
         inputPhone.sendKeys(phoneNumber);
+        return this;
     }
 
-    public void setInputEmail(String emailAddress) {
+    public SignUpPage setInputEmail(String emailAddress) {
         inputEmail.sendKeys(emailAddress);
+        return this;
     }
 
-    public void setInputPassword(String password) {
+    public SignUpPage setInputPassword(String password) {
         inputPassword.sendKeys(password);
+        return this;
     }
 
-    public void setInputConfirmPassword(String confirmPassword) {
+    public SignUpPage setInputConfirmPassword(String confirmPassword) {
         inputConfirmPassword.sendKeys(confirmPassword);
+        return this;
     }
 
-    public void signUpPerform() {
+    public LoggedUserPage signUpPerform() {
         signUpBtn.click();
+        return new LoggedUserPage(driver);
     }
 
     public List<String> getAlertParagraphsText() {
@@ -80,26 +84,4 @@ public class SignUpPage {
                 .map(WebElement::getText)
                 .toList();
     }
-
-    public void fillSignUpForm(String firstName, String lastName, String phoneNumber, String emailAddress,
-                               String password){
-        setInputFirstName(firstName);
-        setInputLastName(lastName);
-        setInputPhone(phoneNumber);
-        setInputEmail(emailAddress);
-        setInputPassword(password);
-        setInputConfirmPassword(password);
-        signUpPerform();
-    }
-
-    public void fillSignUpForm(User user){
-        setInputFirstName(user.getFirstName());
-        setInputLastName(user.getLastName());
-        setInputPhone(user.getPhone());
-        setInputEmail(user.getEmail());
-        setInputPassword(user.getPassword());
-        setInputConfirmPassword(user.getPassword());
-        signUpPerform();
-    }
 }
-

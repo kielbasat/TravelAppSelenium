@@ -43,26 +43,32 @@ public class HotelSearchPage {
     @FindBy(xpath = "//a[text()='  Sign Up']")
     List<WebElement> signUpLink;
 
+    private WebDriver driver;
+
 
     public HotelSearchPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-    public void setCity(String cityName) {
+    public HotelSearchPage setCity(String cityName) {
         searchSpan.click();
         cityInput.sendKeys(cityName);
         cityMatch.click();
+        return this;
     }
 
-    public void setDate(String inDate, String outDate) {
+    public HotelSearchPage setDate(String inDate, String outDate) {
         checkInDateInput.sendKeys(inDate);
         checkOutDateInput.sendKeys(outDate);
+        return this;
     }
 
-    public void setTravellers(int adultsToSubtract, int childToAdd) {
+    public HotelSearchPage setTravellers(int adultsToSubtract, int childToAdd) {
         travellersInput.click();
         addTraveler(adultMinusBtn, adultsToSubtract);
         addTraveler(childPlusBtn, childToAdd);
+        return this;
     }
 
     public void addTraveler(WebElement travelerBtn, int numberOfTravelers) {
@@ -70,11 +76,12 @@ public class HotelSearchPage {
             travelerBtn.click();
     }
 
-    public void performSearch() {
+    public ResultsPage performSearch() {
         searchBtn.click();
+        return new ResultsPage(driver);
     }
 
-    public void openSignUpForm() {
+    public SignUpPage openSignUpForm() {
         myAccountLink
                 .stream()
                 .filter(WebElement::isDisplayed)
@@ -85,5 +92,6 @@ public class HotelSearchPage {
                 .filter(WebElement::isDisplayed)
                 .findFirst()
                 .ifPresent(WebElement::click);
+        return new SignUpPage(driver);
     }
 }
