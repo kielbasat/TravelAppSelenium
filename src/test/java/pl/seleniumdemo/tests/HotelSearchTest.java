@@ -16,13 +16,11 @@ public class HotelSearchTest extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-        hotelSearchPage.setCity("Dubai");
-        hotelSearchPage.setDate("27/03/2022", "29/03/2022");
-        hotelSearchPage.setTravellers(1, 1);
-        hotelSearchPage.performSearch();
-
-        ResultsPage resultsPage = new ResultsPage(driver);
-        List<String> hotelNames = resultsPage.getHotelNames();
+        List<String> hotelNames = hotelSearchPage.setCity("Dubai")
+                        .setDate("27/03/2022", "29/03/2022")
+                        .setTravellers(1, 1)
+                        .performSearch()
+                        .getHotelNames();
 
         Assert.assertEquals(hotelNames.get(0), "Jumeirah Beach Hotel");
         Assert.assertEquals(hotelNames.get(1), "Oasis Beach Tower");
@@ -35,13 +33,10 @@ public class HotelSearchTest extends BaseTest {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-
-        hotelSearchPage.setDate("27/03/2022", "29/03/2022");
-        hotelSearchPage.setTravellers(1, 1);
-        hotelSearchPage.performSearch();
-
-        ResultsPage resultsPage = new ResultsPage(driver);
+        ResultsPage resultsPage = new HotelSearchPage(driver)
+                .setDate("27/03/2022", "29/03/2022")
+                .setTravellers(1, 1)
+                .performSearch();
 
         Assert.assertEquals(resultsPage.hotelSearchResults(), "No Results Found");
     }
