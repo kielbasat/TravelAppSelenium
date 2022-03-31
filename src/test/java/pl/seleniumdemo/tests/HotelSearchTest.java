@@ -17,10 +17,10 @@ public class HotelSearchTest extends BaseTest {
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         List<String> hotelNames = hotelSearchPage.setCity("Dubai")
-                        .setDate("27/03/2022", "29/03/2022")
-                        .setTravellers(1, 1)
-                        .performSearch()
-                        .getHotelNames();
+                .setDate("27/03/2022", "29/03/2022")
+                .setTravellers(1, 1)
+                .performSearch()
+                .getHotelNames();
 
         Assert.assertEquals(hotelNames.get(0), "Jumeirah Beach Hotel");
         Assert.assertEquals(hotelNames.get(1), "Oasis Beach Tower");
