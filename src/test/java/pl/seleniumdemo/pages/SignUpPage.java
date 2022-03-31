@@ -1,15 +1,10 @@
 package pl.seleniumdemo.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pl.seleniumdemo.model.User;
 
-import java.time.Duration;
 import java.util.List;
 
 public class SignUpPage {
@@ -79,27 +74,6 @@ public class SignUpPage {
                 .stream()
                 .map(WebElement::getText)
                 .toList();
-    }
-
-    public void fillSignUpForm(String firstName, String lastName, String phoneNumber, String emailAddress,
-                               String password){
-        setInputFirstName(firstName);
-        setInputLastName(lastName);
-        setInputPhone(phoneNumber);
-        setInputEmail(emailAddress);
-        setInputPassword(password);
-        setInputConfirmPassword(password);
-        signUpPerform();
-    }
-
-    public void fillSignUpForm(User user){
-        setInputFirstName(user.getFirstName());
-        setInputLastName(user.getLastName());
-        setInputPhone(user.getPhone());
-        setInputEmail(user.getEmail());
-        setInputPassword(user.getPassword());
-        setInputConfirmPassword(user.getPassword());
-        signUpPerform();
     }
 }
 
